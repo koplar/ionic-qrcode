@@ -3,11 +3,13 @@ import { NavController } from 'ionic-angular';
 
 /** Tambahan */
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { InAppBrowser } from '@ionic-native/in-app-browser'
 /** --- */
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers : [InAppBrowser]
 })
 export class HomePage {
   qrData = null;
@@ -15,7 +17,8 @@ export class HomePage {
   scannedQrCode = null;
 
   constructor(public navCtrl: NavController,
-  public barcodeScanner : BarcodeScanner) {
+  public barcodeScanner : BarcodeScanner,
+  public inAppBrowser : InAppBrowser) {
 
   }
 
@@ -34,4 +37,11 @@ export class HomePage {
       });
   }
 
+  linkUrl() : void {
+    const openBrowser = this.inAppBrowser.create(
+      this.scannedQrCode,
+      '_self', // atau _self
+      'location=yes'
+    );
+  }
 }

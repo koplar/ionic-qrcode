@@ -32,7 +32,7 @@
 
   <!-- Scan QR Code-->
   <ion-card>
-    <ion-card-content>
+    <ion-card-content (click)="linkUrl()">
       <p>Hasil dari Scan QRCode : {{ scannedQrCode}}</p>
     </ion-card-content>
   </ion-card>
